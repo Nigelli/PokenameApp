@@ -1,0 +1,21 @@
+node_modules
+/dist
+.tmp
+.grunt
+bower_components
+
+*.zip
+
+# OS specific files
+.DS_Store
+thumbs.db
+
+# vim
+*.swp
+*.swo
+
+# NPM might dump log files in working directory
+*.log
+
+# Git merge gui tool helper files
+*.orig
