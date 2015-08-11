@@ -238,7 +238,7 @@ module.exports = function (grunt) {
       files: [{
         expand: true, // Enable dynamic expansion.
         cwd: '<%= config.app %>', // Src matches are relative to this path.
-        src: ['{,/*}*.jade', 'pokeapp/{,/*}*.jade'], // Actual pattern(s) to match.
+        src: ['{,/*}*.jade', 'views/{,/*}*.jade'], // Actual pattern(s) to match.
         dest: '.tmp/', // Destination path prefix.
         ext: '.html' // Dest filepaths will have this extension.
       }]
