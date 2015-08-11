@@ -19,3 +19,6 @@ thumbs.db
 
 # Git merge gui tool helper files
 *.orig
+
+*.jshintrc
+*.editorconfig
