@@ -47,6 +47,14 @@ module.exports = function (grunt) {
       gruntfile: {
         files: ['Gruntfile.js']
       },
+      jade: {
+        files: ['<%= config.app %>/{,*/}*.jade', 'pokeapp/{,/*}*.jade'],
+        tasks: ['jade']
+      },
+      coffee: {
+        files: ['<%= config.app %>/scripts/**/*.coffee'],
+        tasks: ['coffee']
+      },
       sass: {
         files: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
         tasks: ['sass:server', 'postcss']
@@ -209,6 +217,66 @@ module.exports = function (grunt) {
       }
     },
 
+    jade: {
+                // Move the compiled .html files from .tmp/ to dist/
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '.tmp/',
+          src: ['**/*.jade'], // Actual pattern(s) to match.
+          dest: '<%= config.dist %>'
+        }]
+      },
+                // Compile .jade files in app/views/ to .tmp/
+      compile: {
+        options: {
+          pretty: true,
+          data: {
+            debug: false
+          }
+        },
+      files: [{
+        expand: true, // Enable dynamic expansion.
+        cwd: '<%= config.app %>', // Src matches are relative to this path.
+        src: ['{,/*}*.jade', 'pokeapp/{,/*}*.jade'], // Actual pattern(s) to match.
+        dest: '.tmp/', // Destination path prefix.
+        ext: '.html' // Dest filepaths will have this extension.
+      }]
+      }
+    },
+
+    coffee: {
+      options: {
+        sourceMap: true,
+        sourceRoot: ''
+      },
+      dist: {
+        files: [
+          {
+            expand: true,
+            extDot: 'last',
+            cwd: '<%= config.app %>',
+            src: ['**/*.coffee', '!bower_components'],
+            dest: '.tmp/',
+            ext: '.js'
+          }
+        ]
+      },
+      test: {
+        files: [
+          {
+            expand: true,
+            extDot: 'last',
+            cwd: 'test/spec',
+            src: '{,*/}*.coffee',
+            dest: '.tmp/spec',
+            ext: '.js'
+          }
+        ]
+      }
+    },
+
+
     // Automatically inject Bower components into the HTML file
     wiredep: {
       app: {
@@ -242,7 +310,7 @@ module.exports = function (grunt) {
       options: {
         dest: '<%= config.dist %>'
       },
-      html: '<%= config.app %>/index.html'
+      html: '.tmp/index.html'
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
@@ -297,7 +365,7 @@ module.exports = function (grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= config.dist %>',
+          cwd: '.tmp',
           src: '{,*/}*.html',
           dest: '<%= config.dist %>'
         }]
@@ -401,6 +469,8 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'postcss',
+      'jade',
+      'coffee',
       'browserSync:livereload',
       'watch'
     ]);
@@ -439,7 +509,9 @@ module.exports = function (grunt) {
     'modernizr',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'jade',
+    'coffee'
   ]);
 
   grunt.registerTask('default', [

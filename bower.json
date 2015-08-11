@@ -8,7 +8,9 @@
     "jade": "~1.11.0",
     "polymer": "~1.0.8",
     "angular-route": "~1.4.3",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "angular-local-storage": "~0.2.2",
+    "coffee-script": "~1.9.3"
   },
   "overrides": {
     "bootstrap-sass": {

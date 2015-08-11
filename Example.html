@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js">
+    </script>
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div ng-app="livePlugins">
+        <div ng-controller="pluginlistctrl">
+            <span>Add one of {{pluginList.length}} plugins</span>
+            <li ng-repeat="plugin in pluginList">
+                <span><a href="", ng-click="add">{{plugin.name}}</a></span>
+            </li>
+        </div>
+        <div ng-controller="k2ctrl">
+            <div ng-repeat="pluginD in pluginsDisplayed">
+                <div k2plugin pluginname="{{pluginD.name}}" pluginid="{{pluginD.id}}"></div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
