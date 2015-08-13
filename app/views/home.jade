@@ -10,11 +10,13 @@
 .content(ng-controller='MainController')
   button(ng-click='add()') Test Button!
   .output
-    p#codeOutput The output goes here
+    p#codeOutput(ng-bind= 'output()') {{ output }}
   button#addCode.button(change-on-click, ng-click='add') Add code!
-  button#clicky.button(change-on-click, ng-click='add') save list!
+  button#clicky.button(ng-click='saveName()') save list!
   button#retrieveCode.button(change-on-click, ng-click='add') retrieve!
-.content(ng-controller='SecondController')
-  .output(ng-repeat='code in codeName')
-    code-name( info='code')
+.content(ng-controller='initCtrl')
+  .output(ng-repeat='code in codeName()')
+    code-name(info='code')
+//- .content(ng-controller='initCtrl')
+//-   button(ng-click='codeName2()') Test Button!
     
