@@ -5,7 +5,7 @@ angular
 //controller for the test button TODO: this will become the generate code button.
 .controller('MainController', ['$scope', 'nextCodeName', 'codeNameInit', function($scope, nextCodeName, codeNameInit) {
   $scope.add = nextCodeName.codeNameGen;
-  // $scope.output = codeNameInit.codeNameCreate;
+  $scope.output = codeNameInit.codeNameCreate;
   $scope.saveName = codeNameInit.codeNameUpdate;
 }])
 

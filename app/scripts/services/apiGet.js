@@ -23,7 +23,10 @@ angular
 
 
   function _pokedexApiLoadOrGet() {
-    //TODO create a function to load the cached pokedex or complete a GET.
+    if (_pokedexApiLoad() === null) {
+      _pokedexApiSave();
+    }
+
   }
 
   return {

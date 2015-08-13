@@ -8,12 +8,10 @@
   p Click the generate button to start.
   
 .content(ng-controller='MainController')
-  button(ng-click='add()') Test Button!
+  button.button(ng-click='add()') Generate!
   .output
     p#codeOutput(ng-bind= 'output()') {{ output }}
-  button#addCode.button(change-on-click, ng-click='add') Add code!
-  button#clicky.button(ng-click='saveName()') save list!
-  button#retrieveCode.button(change-on-click, ng-click='add') retrieve!
+  button.button(ng-click='saveName()') save to list!
 .content(ng-controller='initCtrl')
   .output(ng-repeat='code in codeName()')
     code-name(info='code')

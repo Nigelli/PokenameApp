@@ -19,7 +19,8 @@ angular
       }
       else {
         console.log('Your codenames have not yet been generated');
-        return 'Generate your code name now';
+        _saveCodeNameList([]);
+        return ['Generate your code name now'];
       }
     }
     function _saveCodeNameList(arr) {
@@ -40,7 +41,7 @@ angular
       }
       else {
         console.log('Your codenames have not yet been generated');
-        return 'Generate your code name now';
+        return 'Generate a code name now';
       }
     }
     function _updateCodeNameList() {
@@ -50,6 +51,7 @@ angular
       storage.push(item);
       console.log(storage);
       localStorage.localStorageSave(codeNames, storage);
+      localStorage.localStorageDelete(codeName);
       console.log('updated');
       return;
     }
@@ -68,10 +70,16 @@ angular
 
   function _nextLetter() {
     var alphabet = 'abcdefghijklmnopqrstuvwxyz';
-    var nextLetterNo = localStorage.localStorageLoad('CodeNameList').length;
+    var nextLetterNo = function(){
+      if (localStorage.localStorageLoad('CodeNameList') === null) {
+        return 0;
+      } else {
+        return localStorage.localStorageLoad('CodeNameList').length;
+      }
+    };
 
-          console.log(alphabet[nextLetterNo]);
-    return alphabet[nextLetterNo];
+    console.log(alphabet[nextLetterNo()]);
+    return alphabet[nextLetterNo()];
   }
 
   return {
