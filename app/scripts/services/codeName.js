@@ -45,15 +45,20 @@ angular
       }
     }
     function _updateCodeNameList() {
-      var storage = localStorage.localStorageLoad(codeNames);
-      var item = localStorage.localStorageLoad(codeName);
-      console.log(item);
-      storage.push(item);
-      console.log(storage);
-      localStorage.localStorageSave(codeNames, storage);
-      localStorage.localStorageDelete(codeName);
-      console.log('updated');
-      return;
+      if (localStorage.localStorageLoad(codeName) === null) {
+
+      } else {
+        var storage = localStorage.localStorageLoad(codeNames);
+        var item = localStorage.localStorageLoad(codeName);
+        console.log(item);
+        storage.push(item);
+        console.log(storage);
+        localStorage.localStorageSave(codeNames, storage);
+        localStorage.localStorageDelete(codeName);
+        console.log('updated');
+        return;
+      }
+
     }
 
   return {
@@ -101,15 +106,26 @@ angular
     localStorage.localStorageDelete('CodeName');
     adjectiveService.adjApi().then(function (data){
     var pokedex = pokemonService.pokeApiLoad();
+    console.log(pokedex);
     var tempArray = pokedex.pokemon;
     var pokemonList = [];
     var letter = nextCodeNameLetter.letterNext();
     console.log(nextCodeNameLetter.letterNext());
-    var i = 0;
-    for (; i < tempArray.length; i++) {
-      if (tempArray[i].name.charAt(0) === letter) {
+    var regex = new RegExp('api\/v1\/pokemon\/([0-9]+)\/', 'i');
+    for (var i = 0; i < tempArray.length; i++) {
+      var property = 'resource_uri';
+      if (tempArray[i][property].match(regex)[1] <= 151 && tempArray[i].name.charAt(0) === letter) {
         pokemonList.push(tempArray[i].name);
       }}
+    console.log(pokemonList);
+    if (pokemonList.length <= 0) {
+      console.log('error check');
+      alert('Sadly there are no gen 1 pokemon begining with the letter ' + letter + ' Instead we\'ve randomly choose you another pokemon');
+      for (var i = 0; i < tempArray.length; i++) {
+        if (tempArray[i].name.charAt(0) === letter) {
+          pokemonList.push(tempArray[i].name);
+        }}
+    }
     var pokemon = pokemonList[Math.floor((Math.random() * pokemonList.length))].capitalize();
     var codeName = data.adjective + ' ' + pokemon;
     localStorage.localStorageSave('CodeName', codeName);

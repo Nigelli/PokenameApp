@@ -4,17 +4,16 @@
     p Welcome to the Pokename site.
 
 .intro
-  p This application will eventually alow you to generate pokemon code names!
+  p This application allows you to generate random pokemon code names!
   p Click the generate button to start.
   
 .content(ng-controller='MainController')
   button.button(ng-click='add()') Generate!
   .output
-    p#codeOutput(ng-bind= 'output()') {{ output }}
+    p#codeOutput(ng-bind= 'output()') 
   button.button(ng-click='saveName()') save to list!
 .content(ng-controller='initCtrl')
   .output(ng-repeat='code in codeName()')
     code-name(info='code')
-//- .content(ng-controller='initCtrl')
-//-   button(ng-click='codeName2()') Test Button!
+
     

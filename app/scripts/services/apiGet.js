@@ -32,8 +32,7 @@ angular
   return {
     pokeApiLoad: _pokedexApiLoad,
     pokeApiNew: _pokedexApiSave,
-    pokeApiInit: _pokedexApiLoadOrGet,
-    pokemon: []
+    pokeApiInit: _pokedexApiLoadOrGet
   };
 }])
 

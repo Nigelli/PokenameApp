@@ -10,8 +10,7 @@ angular
         .state('home', {
         url: '/home',
         templateUrl: '/views/home.html'
-// TODO: an additional loading state is to be create with a fun animation once
-// the app has an initilization phase.
+
       });
     })
 
