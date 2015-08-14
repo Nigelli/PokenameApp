@@ -121,9 +121,9 @@ angular
     if (pokemonList.length <= 0) {
       console.log('error check');
       alert('Sadly there are no gen 1 pokemon begining with the letter ' + letter + ' Instead we\'ve randomly choose you another pokemon');
-      for (var i = 0; i < tempArray.length; i++) {
-        if (tempArray[i].name.charAt(0) === letter) {
-          pokemonList.push(tempArray[i].name);
+      for (var n = 0; n < tempArray.length; n++) {
+        if (tempArray[n].name.charAt(0) === letter) {
+          pokemonList.push(tempArray[n].name);
         }}
     }
     var pokemon = pokemonList[Math.floor((Math.random() * pokemonList.length))].capitalize();

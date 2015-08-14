@@ -6,15 +6,15 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 
 html {
   font-family: sans-serif;
-  border-width: thin;
-  border-color: black;
-  border-style: solid;
-
 }
 
 @font-face {
     font-family: pokeFont;
     src: url('PokemonSolid.ttf');
+}
+
+.mainapp {
+  height: auto;
 }
 
 body {
@@ -23,57 +23,44 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: black;
   height: inherit;
-  background-color: #FFC4C4;
-
+  background-color: rgba(30, 51, 72, .1);
 }
-
-a {
-  color: #00B7FF;
-}
-
-p {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-h1 {
-
+img {
+  height: 100px;
 }
 
 .title {
-  margin-top: 15px;
-  margin-left: 30px;
-  margin-right: 30px;
+  height: 50px;
   margin-bottom: 15px;
-  background-color: #F25B44;
-  height: auto;
   align-items: center;
   position: relative;
-  border-style: solid;
-  border-color: black;
-  border-width: 1px;
   text-align: center;
   font-family: 'pokeFont';
+  line-height: 50px;
+  vertical-align: middle;
+
 }
 
 .banner {
-  color: #FFFDFC;
+  color: white;
   height: inherit;
   font-size: 24px;
   letter-spacing: 4px;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  background: url('../images/PokeEmOn2.jpeg');
+  background-repeat: repeat-x;
 
 }
 
 .intro {
   margin-left: 30px;
   margin-right: 30px;
-  margin-bottom: 30px;
-  background-color: #F25B44;
   height: auto;
   align-items: center;
   position: relative;
-  border-style: solid;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-left-style: solid;
   border-color: black;
   border-width: 1px;
   text-align: center;
@@ -82,46 +69,51 @@ h1 {
 }
 
 .content {
-  margin-left: 30px;
-  margin-right: 30px;
+  padding-top: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
   margin-bottom: 30px;
-  background-color: #F25B44;
-  height: auto;
+  background-color: rgba(73, 95, 116, .7);
   position: relative;
-  border-style: solid;
-  border-color: black;
-  border-width: 1px;
   text-align: center;
   letter-spacing: 4px;
+}
+
+.subContent {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-
 }
 
 .button {
-  margin-top: 20px;
-  width: auto;
-  height: 20px;
-  border-radius: 25px;
+  height: 40px;
+  width: 50%;
   order: 1;
   font-size: 10px;
-
+  padding: 0px;
+  border: 0px;
+  background-color: rgba(0, 0, 0, .2);
 }
+.button:hover {
+  background-color: rgba(0, 0, 0, .5);
+  -webkit-transition: opacity .25s ease;
+  -moz-transition: opacity .25s ease;
+}
+
 
 .output {
   order: 1;
-  margin-top: 11px;
-  margin-bottom: 15px;
-  width: 30%;
-  border-style: double;
-  border-color: black;
-  border-width: 5px;
-  background-color: #EBDFDF;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 370px;
+  background-color: rgba(235, 223, 223, 1);
   margin-left: 5%;
   margin-right: 5%;
+  line-height: 40px;
+  vertical-align: middle;
 }
 
 .container {
@@ -130,3 +122,73 @@ h1 {
   margin-left: 5%;
   margin-right: 5%;
 }
+
+.mainContent {
+  height: auto;
+
+}
+
+.footer {
+  width:100%;
+	height:100px;
+	position: relative;
+	left:0;
+  background: transparent;
+  background: url('../images/PokeEmOn2.jpeg');
+  background-repeat: repeat-x;
+}
+
+#newCode {
+  margin-left: 11%;
+  margin-right: 11%;
+  margin-bottom: 30px;
+}
+
+#generate {
+  border-right-width: thin;
+  border-right-color: black;
+  border-right-style: solid;
+}
+
+#saveCode {
+  border-left-width: thin;
+  border-left-color: black;
+  border-left-style: solid;
+}
+
+#savedCodes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 30px;
+}
+#code {
+  position: relative;
+  z-index: 100;
+}
+#overlay {
+  background:rgba(0,0,0,.75);
+  text-align:center;
+  top: 0px;
+  height: 40px;
+  width: 370px;
+  padding:0;
+  position: absolute;
+  z-index: 200;
+  opacity:0;
+  -webkit-transition: opacity .25s ease;
+  -moz-transition: opacity .25s ease;
+}
+
+#code:hover #overlay {
+               opacity:1;
+               cursor: pointer;
+               cursor: hand;
+             }
+
+#plus       {  font-family:Helvetica;
+               font-weight:900;
+               color:rgba(255,255,255,.85);
+               font-size:30px;}
