@@ -20,7 +20,7 @@ angular
       else {
         console.log('Your codenames have not yet been generated');
         _saveCodeNameList([]);
-        return ['Generate your code name now'];
+        return;
       }
     }
     function _saveCodeNameList(arr) {
@@ -49,7 +49,7 @@ angular
       }
       else {
         console.log('Your codenames have not yet been generated');
-        return 'Generate a code name now';
+        return 'Waiting for you.';
       }
     }
     function _updateCodeNameList() {
@@ -151,7 +151,10 @@ angular
     }
     var pokemon = pokemonList[Math.floor((Math.random() * pokemonList.length))].capitalize();
     var codeName = data.adjective + ' ' + pokemon;
-    localStorage.localStorageSave('CodeName', codeName);
+    var regex2 = /(_)/g;
+    var codeName2 = codeName.replace(regex2, '-');
+    console.log(codeName2);
+    localStorage.localStorageSave('CodeName', codeName2);
     return;
     });
    }

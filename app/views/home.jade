@@ -8,7 +8,7 @@
     p This application allows you to generate random pokemon code names!
     p Click the generate button to start.
     .subContent
-      .output#newCode
+      .output#newCode(ng-class='hidden')
         p#codeOutput(ng-bind= 'output()') 
       button.button#generate(ng-click='add()') Generate!
       button.button#saveCode(ng-click='saveName()') save to list!
@@ -18,7 +18,7 @@
       p.coolPokemon(ng-show='codeName().length !== 0') Here are your saved code names.
       .output#code(ng-repeat='code in codeName()', ng-click='remove($index)')
         code-name(info='code')
-      button.button#removeAll(ng-click='removeAll()', ng-show='codeName().length !== 0') Delete all!
+      button.button#removeAll(ng-click='removeAll()', ng-show='codeName().length >= 2') Delete all!
     
 .footer
   img(src='/images/PokeEmOn.jpeg')
