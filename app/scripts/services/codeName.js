@@ -124,7 +124,7 @@ angular
      return this.charAt(0).toUpperCase() + this.slice(1);
   };
     function _nextCodeName() {
-    localStorage.localStorageDelete('CodeName');
+    localStorage.localStorageSave('CodeName', []);
     adjectiveService.adjApi().then(function (data){
 
     var pokedex = pokemonService.pokeApiLoad();
