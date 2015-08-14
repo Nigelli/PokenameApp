@@ -13,18 +13,18 @@ angular
 .service('localStorage', function(localStorageService) {
 
   function _localStorageSave(key, val) {
-    console.log('item save');
+
     return localStorageService.set(key, val);
   }
 
 
   function _localStorageLoad(key) {
-    console.log('item load');
+
     return localStorageService.get(key);
   }
 
   function _localStorageRemove(key) {
-    console.log('item remove');
+
     return localStorageService.remove(key);
   }
 
