@@ -9,11 +9,13 @@ angular
   $scope.saveName = codeNameInit.codeNameUpdate;
 }])
 
-//controller to populate the ngRepeat function that cycles through saved codenames. 
+//controller to populate the ngRepeat function that cycles through saved codenames.
 .controller('initCtrl', ['$scope',
 'pokemonService',
 'codeNameInit',
 
  function($scope, pokemonService, codeNameInit) {
     $scope.codeName = codeNameInit.codeNameInit;
+    $scope.remove = codeNameInit.codeNameDelete;
+    $scope.removeAll = codeNameInit.codeNameListReset;
 }]);

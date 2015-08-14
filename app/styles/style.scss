@@ -5,7 +5,9 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 // endbower
 
 html {
-  font-family: sans-serif;
+  // font-family: sans-serif;
+  // font-family:'wf_segoe-ui_light';
+  // src:url('//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.eot');
 }
 
 @font-face {
@@ -20,36 +22,37 @@ html {
 body {
   margin: 0;
   padding: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size:calc(100% + .5vw);
   color: black;
   height: inherit;
   background-color: rgba(30, 51, 72, .1);
+
 }
 img {
   height: 100px;
 }
 
 .title {
-  height: 50px;
-  margin-bottom: 15px;
+  height: 75px;
+  margin-bottom: 30px;
   align-items: center;
-  position: relative;
+  position: fixed;
+  z-index: 300;
+  width: 100%;
   text-align: center;
   font-family: 'pokeFont';
-  line-height: 50px;
+  line-height: 75px;
   vertical-align: middle;
-
 }
 
 .banner {
   color: white;
   height: inherit;
-  font-size: 24px;
+  font-size: 2vw;
   letter-spacing: 4px;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   background: url('../images/PokeEmOn2.jpeg');
   background-repeat: repeat-x;
-
 }
 
 .intro {
@@ -68,6 +71,12 @@ img {
   letter-spacing: 4px;
 }
 
+.mainContent {
+  height: auto;
+  margin-bottom: 150px;
+  padding-top: 100px;
+
+}
 .content {
   padding-top: 10px;
   margin-left: 50px;
@@ -77,6 +86,7 @@ img {
   position: relative;
   text-align: center;
   letter-spacing: 4px;
+  font-family:'Verdana';
 }
 
 .subContent {
@@ -114,6 +124,8 @@ img {
   margin-right: 5%;
   line-height: 40px;
   vertical-align: middle;
+  overflow: hidden;
+  font-family:'Verdana';
 }
 
 .container {
@@ -123,24 +135,23 @@ img {
   margin-right: 5%;
 }
 
-.mainContent {
-  height: auto;
-
-}
-
 .footer {
   width:100%;
 	height:100px;
-	position: relative;
-	left:0;
+	position: fixed;
+	left: 0px;
+  bottom: 0;
+  z-index: 300;
   background: transparent;
   background: url('../images/PokeEmOn2.jpeg');
   background-repeat: repeat-x;
+  display: flex;
+  justify-content: center;
 }
 
 #newCode {
-  margin-left: 11%;
-  margin-right: 11%;
+  margin-left: 20%;
+  margin-right: 20%;
   margin-bottom: 30px;
 }
 
@@ -162,18 +173,20 @@ img {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding-bottom: 30px;
+  padding-bottom: 0px;
 }
 #code {
   position: relative;
   z-index: 100;
+  -webkit-transition: opacity 1s ease;
+  -moz-transition: opacity 1s ease;
 }
 #overlay {
   background:rgba(0,0,0,.75);
   text-align:center;
   top: 0px;
-  height: 40px;
-  width: 370px;
+  height: 100%;
+  width: 100%;
   padding:0;
   position: absolute;
   z-index: 200;
@@ -183,12 +196,24 @@ img {
 }
 
 #code:hover #overlay {
-               opacity:1;
-               cursor: pointer;
-               cursor: hand;
-             }
+  opacity:1;
+  cursor: pointer;
+  cursor: hand;
+}
 
-#plus       {  font-family:Helvetica;
-               font-weight:900;
-               color:rgba(255,255,255,.85);
-               font-size:30px;}
+#plus {
+  font-family:Helvetica;
+  font-weight:900;
+  color:rgba(255,255,255,.85);
+  font-size:30px;}
+
+.coolPokemon {
+  width: 100%;
+}
+
+#removeAll {
+  margin-top: 20px;
+  height: 40px;
+  width: 100%;
+  order: 3;
+}

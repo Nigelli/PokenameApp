@@ -1,7 +1,7 @@
 
 .title
   .banner
-    p Welcome to the Pokename site.
+    p Welcome to the Pokename generation site.
 
 .mainContent  
   .content(ng-controller='MainController')
@@ -14,9 +14,11 @@
       button.button#saveCode(ng-click='saveName()') save to list!
   .content#savedCodes(ng-controller='initCtrl')
     .subContent
-      p Random pokemon code names are cool. Here are your saved code names.
-      .output#code(ng-repeat='code in codeName()')
+      p.coolPokemon Random pokemon code names are cool.
+      p.coolPokemon(ng-show='codeName().length !== 0') Here are your saved code names.
+      .output#code(ng-repeat='code in codeName()', ng-click='remove($index)')
         code-name(info='code')
+      button.button#removeAll(ng-click='removeAll()', ng-show='codeName().length !== 0') Delete all!
     
 .footer
   img(src='/images/PokeEmOn.jpeg')

@@ -28,9 +28,17 @@ angular
       console.log('saved');
       return;
     }
-    function _removeCodeNameList(arr, index) {
-      localStorage.localStorageSet(arr.splice([index]));
-      console.log(index + ' removed from ' + arr);
+    function _removeCodeNameList(index) {
+      console.log(index);
+      var currentCodes = localStorage.localStorageLoad(codeNames);
+      currentCodes.splice(index, 1);
+      localStorage.localStorageSave(codeNames, currentCodes);
+      console.log('removed');
+      return;
+    }
+    function _resetCodeNameList() {
+      localStorage.localStorageDelete(codeNames);
+      _saveCodeNameList([]);
       return;
     }
     function _currentCodeName() {
@@ -52,6 +60,11 @@ angular
         var item = localStorage.localStorageLoad(codeName);
         console.log(item);
         storage.push(item);
+        storage.sort(function(a, b){
+          if(a <= b) {return -1;}
+          if(a >= b) {return 1;}
+        return 0;
+        });
         console.log(storage);
         localStorage.localStorageSave(codeNames, storage);
         localStorage.localStorageDelete(codeName);
@@ -66,7 +79,8 @@ angular
     codeNameSave: _saveCodeNameList,
     codeNameDelete: _removeCodeNameList,
     codeNameCreate: _currentCodeName,
-    codeNameUpdate: _updateCodeNameList
+    codeNameUpdate: _updateCodeNameList,
+    codeNameListReset: _resetCodeNameList
   };
 }])
 
@@ -75,18 +89,28 @@ angular
 
   function _nextLetter() {
     var alphabet = 'abcdefghijklmnopqrstuvwxyz';
-    var nextLetterNo = function(){
-      if (localStorage.localStorageLoad('CodeNameList') === null) {
-        return 0;
+    var codeNameList = localStorage.localStorageLoad('CodeNameList');
+      if (codeNameList === null) {
+        console.log('no saved codes found');
+        return alphabet[0];
       } else {
-        return localStorage.localStorageLoad('CodeNameList').length;
+        for (var i = 0; i < codeNameList.length + 1; i++) {
+          console.log(i + '   ' + codeNameList.length);
+          if (i >= codeNameList.length) {
+            return alphabet[i];
+          }
+          else {
+            var l = codeNameList[i].charAt(0).toLowerCase();
+            if (l !== alphabet[i]) {
+              console.log('codename ' + codeNameList[i]);
+              console.log('letter ' + alphabet[i]);
+              console.log(alphabet[i]);
+              return alphabet[i];
+            }
+          }
+        }
       }
-    };
-
-    console.log(alphabet[nextLetterNo()]);
-    return alphabet[nextLetterNo()];
   }
-
   return {
     letterNext: _nextLetter
   };
@@ -120,7 +144,6 @@ angular
     console.log(pokemonList);
     if (pokemonList.length <= 0) {
       console.log('error check');
-      alert('Sadly there are no gen 1 pokemon begining with the letter ' + letter + ' Instead we\'ve randomly choose you another pokemon');
       for (var n = 0; n < tempArray.length; n++) {
         if (tempArray[n].name.charAt(0) === letter) {
           pokemonList.push(tempArray[n].name);
